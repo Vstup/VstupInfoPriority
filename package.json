@@ -1,1 +1,9 @@
-
+{
+  "name": "vstup-info-priority",
+  "version": "0.2.6",
+  "engines": {
+    "node": "6.10.2"
+  },
+  "dependencies": {
+  }
+}
