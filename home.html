@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Priority</title>
+    <!--<link rel="stylesheet" href="style.css" type="text/css">-->
+    <!--<script src="XMLHttpRequest.js"></script>-->
+    <script>
+        'use strict';
+        function getInfo(){
+            const pib = document.getElementById('pib').value;
+            const path = document.getElementById('path').value;
+
+            const xhttp = new XMLHttpRequest();
+
+           /* xhttp.onreadystatechange = () => {
+                if(this.readyState === 4 && this.status === 200)
+                    document.getElementById('result').innerHTML = '<h1>'+'Your rate by first priority is: '+ this.responseText +'</h1>';
+                // alert('<h1>'+'Your rate by first priority is: '+ this.responseText +'</h1>');
+                alert(''+this.responseText);
+            };*/
+
+            xhttp.open('GET', 'server.js?path='+ path + '&pib=' + pib, true);
+            xhttp.send();
+        };
+
+        function checkPath(){
+            let path = document.getElementById('path').value;
+            document.getElementById('path').style.backgroundColor = !path.indexOf('http://')?' rgba(0, 212, 0, 0.63)' : 'rgba(211, 15, 0, 0.76)' ;
+            if(path === '')document.getElementById('path').style.backgroundColor = 'white';
+        }
+    </script>
+    <style>
+        body{
+            text-align: center;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        form{
+            margin-top: 10%;
+            padding: 0px;
+            border-radius: 10px;
+        }
+
+        input{
+            height: 50px;
+            font-size: larger;
+            padding: 0.5%;
+            border-radius: 10px;
+
+        }
+
+        button{
+            height: 50px;
+            width: 8%;
+            font-size: larger;
+            border-radius: 10px;
+        }
+
+        #pib{
+            width: 300px;
+        }
+
+        #path{
+            width: 800px;
+        }
+
+        #result{
+            /*border: 1px solid black;*/
+        }
+        input:focus{
+            /*outline: 2px solid green;*/
+            outline: none;
+        }
+        button:focus{
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+<form>
+
+  <input type="text" name="path" id="path" placeholder="Enter the url" onchange="checkPath()" value="http://www.vstup.info/2017/41/i2017i41p369325.html"><br><br>
+  <input type="text" name="pib"  id="pib" placeholder="Enter your PIB like XXXXX X. X." value="Світашова Ю. О."><br><br>
+
+</form>
+
+<button onclick="getInfo()">Calculate</button>
+
+<div id="result">
+
+</div>
+
+</body>
+</html>
